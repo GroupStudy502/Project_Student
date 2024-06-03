@@ -4,9 +4,7 @@ import org.choongang.global.AbstractControllerLocator;
 import org.choongang.global.Controller;
 import org.choongang.global.ControllerLocator;
 import org.choongang.global.Menu;
-import org.choongang.scores.controllers.ScoresController;
 import org.choongang.student.constants.StudentMenu;
-import org.choongang.subject.controllers.SubjectsController;
 
 public class StudentControllerLocator extends AbstractControllerLocator {
     private static ControllerLocator instance;
@@ -33,7 +31,7 @@ public class StudentControllerLocator extends AbstractControllerLocator {
         if (menu instanceof StudentMenu) {
             StudentMenu studentMenu = (StudentMenu) menu;
             switch(studentMenu) {
-                case SUBJECTS: controller = new SubjectsController(); break;
+                case SUBJECTS: controller = new StudentController.SubjectsController(); break;
                 case STUDENTS: controller = new StudentsController(); break;
                 case SCORES: controller = new ScoresController(); break;
             }

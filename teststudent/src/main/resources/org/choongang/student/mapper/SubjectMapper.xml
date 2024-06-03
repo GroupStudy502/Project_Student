@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.choongang.student.mapper.SubjectMapper">
-    <resultMap id="subjectMap" type="org.choongang.subject.entities.Subject">
+    <resultMap id="subjectMap" type="org.choongang.student.entities.Subject">
         <result column="SUB_CODE" property="subCode" />
         <result column="SUB_NM" property="subNm" />
         <result column="TEACHER_NM" property="teacherNm" />

@@ -1,4 +1,4 @@
-package org.choongang.scores.entities;
+package org.choongang.student.entities;
 
 import lombok.Builder;
 import lombok.Data;

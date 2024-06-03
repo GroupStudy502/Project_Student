@@ -1,13 +1,13 @@
-package org.choongang.subject.contants;
+package org.choongang.student.entities;
 
 import lombok.Builder;
 import lombok.Data;
+
 @Data
 @Builder
-public class SearchSubject {
+public class Subject {
     private long subCode;
     private String subNm;
     private String teacherNm;
     private String subDiv;
 }
-//실행

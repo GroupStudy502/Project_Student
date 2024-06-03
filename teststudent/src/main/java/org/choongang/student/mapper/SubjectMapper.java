@@ -1,5 +1,5 @@
 package org.choongang.student.mapper;
-import org.choongang.subject.entities.Subject;
+import org.choongang.student.entities.Subject;
 
 import java.util.List;
 

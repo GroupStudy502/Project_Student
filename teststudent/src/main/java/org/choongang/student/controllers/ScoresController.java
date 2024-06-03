@@ -1,4 +1,4 @@
-package org.choongang.scores.controllers;
+package org.choongang.student.controllers;
 
 import org.choongang.global.AbstractController;
 import org.choongang.global.constants.MainMenu;

@@ -1,14 +1,16 @@
 package org.choongang.student.services;
 
+import lombok.RequiredArgsConstructor;
 import org.choongang.global.AbstractServiceLocator;
 import org.choongang.global.Menu;
 import org.choongang.global.Service;
 import org.choongang.global.ServiceLocator;
 import org.choongang.global.configs.DBConn;
 import org.choongang.student.constants.StudentMenu;
+import org.choongang.student.entities.Subject;
 import org.choongang.student.mapper.SubjectMapper;
-import org.choongang.subject.services.SubjectServiceList;
-import org.choongang.subject.services.SubjectServiceUpdate;
+
+import java.util.List;
 
 public class StudentServiceLocator extends AbstractServiceLocator {
 
@@ -62,9 +64,9 @@ public class StudentServiceLocator extends AbstractServiceLocator {
         if (menu instanceof StudentMenu) { // 과목, 학생, 성적
             StudentMenu studentMenu = (StudentMenu)menu;
             switch (studentMenu) {
-                case SUBJECTS: service = new SubjectServiceUpdate(SubjectMapper()); break;
+                case SUBJECTS: service = new SearchScore.SubjectServiceUpdate(SubjectMapper()); break;
                 case STUDENTS:
-                case SCORES: service = new SubjectServiceUpdate(SubjectMapper()); break;
+                case SCORES: service = new SearchScore.SubjectServiceUpdate(SubjectMapper()); break;
             }
 
         } else { // 주메뉴
@@ -77,4 +79,15 @@ public class StudentServiceLocator extends AbstractServiceLocator {
     }
 
 
+    @RequiredArgsConstructor
+    public static class SubjectServiceList implements Service<List<Subject>> {
+        private final SubjectMapper mapper;
+
+        @Override
+        public List<Subject> process() {
+            System.out.println("**SubjectService-process1()");
+            return mapper.getSubject();
+
+        }
+    }
 }
