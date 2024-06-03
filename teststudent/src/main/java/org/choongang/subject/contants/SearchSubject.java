@@ -1,4 +1,4 @@
-package org.choongang.student.controllers;
+package org.choongang.subject.contants;
 
 import lombok.Builder;
 import lombok.Data;

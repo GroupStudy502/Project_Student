@@ -4,7 +4,9 @@ import org.choongang.global.AbstractControllerLocator;
 import org.choongang.global.Controller;
 import org.choongang.global.ControllerLocator;
 import org.choongang.global.Menu;
+import org.choongang.scores.controllers.ScoresController;
 import org.choongang.student.constants.StudentMenu;
+import org.choongang.subject.controllers.SubjectsController;
 
 public class StudentControllerLocator extends AbstractControllerLocator {
     private static ControllerLocator instance;

@@ -1,9 +1,7 @@
-package org.choongang.student.controllers;
+package org.choongang.scores;
 
 import lombok.Builder;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 @Data
 @Builder
