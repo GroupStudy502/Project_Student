@@ -63,6 +63,7 @@ public abstract class AbstractController implements Controller {
         return str;
     }
 
+
     /**
      * 템플릿 메서드 패턴 : 특정 절차가 고정되어 있는 경우
      *
@@ -80,13 +81,14 @@ public abstract class AbstractController implements Controller {
         if (MemberSession.isLogin()) { // 로그인 상태인 경우
             switch (menuNo) {
 
-                case 1:
+                case 1: mainMenu = MainMenu.STUDENT; break;
                 case 2:
-                case 3: mainMenu = MainMenu.STUDENT; break;
-                case 4:
                     MemberSession.logout(); // 로그아웃
                     mainMenu = MainMenu.MAIN;
                     break;
+                default:
+                    System.err.println("1,2번 중 선택하세요.");
+                    mainMenu = MainMenu.MAIN; // 메인 메뉴
             }
         } else { // 미로그인 상태
             switch (menuNo) {
@@ -97,6 +99,7 @@ public abstract class AbstractController implements Controller {
                     mainMenu = MainMenu.LOGIN;
                     break; // 로그인
                 default:
+                    System.err.println("1,2번 중 선택하세요.");
                     mainMenu = MainMenu.MAIN; // 메인 메뉴
             }
         }

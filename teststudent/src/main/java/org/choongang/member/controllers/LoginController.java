@@ -38,8 +38,8 @@ public class LoginController extends AbstractController {
             Service service = MemberServiceLocator.getInstance().find(MainMenu.LOGIN);
             service.process(form);
 
-            //router.change(MainMenu.MAIN); // 로그인 성공시 -> 게임메인페이지
-            router.change(MainMenu.STUDENT); // 로그인 성공시 -> 학생관리메인페이지
+            router.change(MainMenu.MAIN); // 로그인 성공시 -> 메인페이지
+            //router.change(MainMenu.STUDENT); // 로그인 성공시 -> 학생관리메인페이지
         } catch (RuntimeException e) {
 
             System.err.println(e.getMessage());

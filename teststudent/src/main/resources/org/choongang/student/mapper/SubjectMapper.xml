@@ -19,6 +19,11 @@
             </if>
         </where>
     </select>
+    <!-- 과목 등록 -->
+    <insert id="register">
+        INSERT INTO SUBJECT (SUB_CODE, SUB_NM, TEACHER_NM, SUB_DIV)
+        VALUES (#{subCode}, #{subNm}, #{teacherNm}, #{subDiv})
+    </insert>
 
     <!-- 과목 목록 조회 -->
     <select id="getSubject" resultMap="subjectMap">
@@ -41,5 +46,8 @@
         </set>
         WHERE SUB_CODE=#{subCode}
     </update>
-
+    <!-- 과목 삭제 -->
+    <delete id="delete">
+        DELETE FROM SUBJECT WHERE SUB_CODE=#{subCode}
+    </delete>
 </mapper>

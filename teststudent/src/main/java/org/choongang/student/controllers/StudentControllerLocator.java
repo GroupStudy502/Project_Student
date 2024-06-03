@@ -31,9 +31,12 @@ public class StudentControllerLocator extends AbstractControllerLocator {
         if (menu instanceof StudentMenu) {
             StudentMenu studentMenu = (StudentMenu) menu;
             switch(studentMenu) {
-                case SUBJECTS: controller = new SubjectsController(); break;
+                case SUBJECTS: controller = new SubjectsListController(); break;
                 case STUDENTS: controller = new StudentsController(); break;
                 case SCORES: controller = new ScoresController(); break;
+                case SUBINSERT: controller = new SubjectsInsertController(); break;
+                case SUBUPDATE: controller = new SubjectsUpdateController(); break;
+                case SUBDELETE: controller = new SubjectsDeleteController(); break;
             }
         } else { // 학생 메인 메뉴
             controller = new StudentController();
