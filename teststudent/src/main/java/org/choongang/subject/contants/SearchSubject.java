@@ -10,3 +10,4 @@ public class SearchSubject {
     private String teacherNm;
     private String subDiv;
 }
+//실행
