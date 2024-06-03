@@ -24,5 +24,6 @@
         <mapper resource="org/choongang/member/mapper/MemberMapper.xml" />
         <mapper resource="org/choongang/game/mapper/PointLogMapper.xml" />
         <mapper resource="org/choongang/student/mapper/SubjectMapper.xml" />
+        <mapper resource="org/choongang/student/mapper/StudentMapper.xml" />
     </mappers>
 </configuration>

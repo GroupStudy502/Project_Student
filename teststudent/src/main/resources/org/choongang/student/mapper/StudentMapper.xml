@@ -35,12 +35,7 @@
 
     <!-- 학생 개별 조회 -->
     <select id="get" resultMap="studentMap">
-        SELECT * FROM STUDENT
-        <where>
-            <if test="sNo != null">
-                S_NO=#{sNo}
-            </if>
-        </where>
+        SELECT * FROM STUDENT WHERE S_NO=#{sNo}
     </select>
 
     <!-- 학생 목록 갯수, 페이징 구현시 활용 가능 -->
@@ -69,10 +64,6 @@
 
     <!-- 학생 등록 -->
     <insert id="register">
-        <selectKey keyProperty="sNo" order="BEFORE" resultType="long">
-            SELECT STUDENT.NEXTVAL FROM DUAL
-        </selectKey>
-
         INSERT INTO STUDENT (S_NO, S_NM, S_GRADE, S_GEN, S_ADM_DT, S_STAT  )
         VALUES (#{sNo}, #{sNm}, #{sGrade}, #{sGen}, #{sAdmDt}, #{sStat})
     </insert>
