@@ -25,7 +25,7 @@ public class SubjectServiceUpdate implements Service<RequestSubject> {
                 .build();
         System.out.println("***subject=" + subject);
         int affectedRows = mapper.modify(subject);
-        System.out.println("과목수정 affectedRows : " + affectedRows);
+        System.out.println("과목수정 affectedRows-choi : " + affectedRows);
         if (affectedRows < 1) { // 과목 처리 실패시
             throw new ValidationException("과목 수정 실패하였습니다.");
         }
