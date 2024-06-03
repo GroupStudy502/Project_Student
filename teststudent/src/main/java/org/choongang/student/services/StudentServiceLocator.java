@@ -44,35 +44,60 @@ public class StudentServiceLocator extends AbstractServiceLocator {
 
         }
 
-        services.put(menu, service);
+        //services.put(menu, service);///이건 .. DB 업데이트 안되므로 쓰지말기
 
         return service;
     }
     public Service findUpdate(Menu menu) {
         System.out.println("**StudentServiceLocator-findUpdate(" + menu + ")");
-        /*
-        Service service = services.get(menu);
-        if (service != null) {
-            return service;
-        }
-         */
+
         Service service = null;
         if (menu instanceof StudentMenu) { // 과목, 학생, 성적
             StudentMenu studentMenu = (StudentMenu)menu;
             switch (studentMenu) {
                 case SUBJECTS: service = new SubjectServiceUpdate(SubjectMapper()); break;
                 case STUDENTS:
-                case SCORES: service = new SubjectServiceUpdate(SubjectMapper()); break;
+                case SCORES:
             }
 
         } else { // 주메뉴
 
         }
-
-        //services.put(menu, service);
-
         return service;
     }
+    public Service findInsert(Menu menu) {
+        System.out.println("**StudentServiceLocator-findInsert(" + menu + ")");
 
+        Service service = null;
+        if (menu instanceof StudentMenu) { // 과목, 학생, 성적
+            StudentMenu studentMenu = (StudentMenu)menu;
+            switch (studentMenu) {
+                case SUBJECTS: service = new SubjectServiceInsert(SubjectMapper()); break;
+                case STUDENTS:
+                case SCORES:
+            }
+
+        } else { // 주메뉴
+
+        }
+        return service;
+    }
+    public Service findDelete(Menu menu) {
+        System.out.println("**StudentServiceLocator-findDelete(" + menu + ")");
+
+        Service service = null;
+        if (menu instanceof StudentMenu) { // 과목, 학생, 성적
+            StudentMenu studentMenu = (StudentMenu)menu;
+            switch (studentMenu) {
+                case SUBJECTS: service = new SubjectServiceDelete(SubjectMapper()); break;
+                case STUDENTS:
+                case SCORES:
+            }
+
+        } else { // 주메뉴
+
+        }
+        return service;
+    }
 
 }
