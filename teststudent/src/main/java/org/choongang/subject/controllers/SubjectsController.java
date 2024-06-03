@@ -3,8 +3,8 @@ package org.choongang.subject.controllers;
 import org.choongang.global.AbstractController;
 import org.choongang.global.Service;
 import org.choongang.student.constants.StudentMenu;
-import org.choongang.student.controllers.RequestSubject;
-import org.choongang.student.entities.Subject;
+import org.choongang.subject.RequestSubject;
+import org.choongang.subject.entities.Subject;
 import org.choongang.student.services.StudentServiceLocator;
 import org.choongang.template.Templates;
 

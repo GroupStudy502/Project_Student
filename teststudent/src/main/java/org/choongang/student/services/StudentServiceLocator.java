@@ -7,6 +7,8 @@ import org.choongang.global.ServiceLocator;
 import org.choongang.global.configs.DBConn;
 import org.choongang.student.constants.StudentMenu;
 import org.choongang.student.mapper.SubjectMapper;
+import org.choongang.subject.services.SubjectServiceList;
+import org.choongang.subject.services.SubjectServiceUpdate;
 
 public class StudentServiceLocator extends AbstractServiceLocator {
 

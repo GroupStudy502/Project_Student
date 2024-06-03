@@ -1,13 +1,11 @@
-package org.choongang.student.entities;
+package org.choongang.subject;
 
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
 @Builder
-public class Subject {
+public class RequestSubject {
     private long subCode;
     private String subNm;
     private String teacherNm;

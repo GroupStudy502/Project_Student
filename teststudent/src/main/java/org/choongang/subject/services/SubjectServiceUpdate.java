@@ -1,9 +1,9 @@
-package org.choongang.student.services;
+package org.choongang.subject.services;
 import lombok.RequiredArgsConstructor;
 import org.choongang.global.Service;
 import org.choongang.global.exceptions.ValidationException;
-import org.choongang.student.controllers.RequestSubject;
-import org.choongang.student.entities.Subject;
+import org.choongang.subject.RequestSubject;
+import org.choongang.subject.entities.Subject;
 import org.choongang.student.mapper.SubjectMapper;
 
 @RequiredArgsConstructor

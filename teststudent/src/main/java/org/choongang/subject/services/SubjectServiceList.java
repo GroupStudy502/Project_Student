@@ -1,7 +1,7 @@
-package org.choongang.student.services;
+package org.choongang.subject.services;
 import lombok.RequiredArgsConstructor;
 import org.choongang.global.Service;
-import org.choongang.student.entities.Subject;
+import org.choongang.subject.entities.Subject;
 import org.choongang.student.mapper.SubjectMapper;
 
 import java.util.List;

@@ -1,9 +1,7 @@
-package org.choongang.student.entities;
+package org.choongang.scores.entities;
 
 import lombok.Builder;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 @Data
 @Builder
