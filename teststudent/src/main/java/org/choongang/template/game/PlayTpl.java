@@ -18,7 +18,7 @@ public class PlayTpl implements Template {
         Scanner sc = new Scanner(System.in);
 
         do {
-            System.out.println("\n" + "\n" + "         < 묵찌빠 게임 >         " + "\n");
+            System.out.println("\n" + "\n" + "          < 묵찌빠 게임 >          " + "\n");
 
             System.out.println("========== GAME START ==========");
             System.out.println("1.게임 시작  2.게임 종료");
