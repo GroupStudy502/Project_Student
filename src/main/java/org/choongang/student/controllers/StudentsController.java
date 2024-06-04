@@ -20,7 +20,7 @@ public class StudentsController extends AbstractController {
 
     @Override
     public void show() {
-
+            Templates.getInstance().render(StudentMenu.STUDENTS);
     }
 
     @Override

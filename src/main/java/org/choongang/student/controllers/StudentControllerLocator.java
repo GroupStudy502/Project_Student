@@ -38,7 +38,6 @@ public class StudentControllerLocator extends AbstractControllerLocator {
             controller = new StudentController();
         }
 
-
         return controller;
     }
 }
