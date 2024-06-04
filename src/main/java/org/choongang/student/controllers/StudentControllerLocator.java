@@ -30,7 +30,7 @@ public class StudentControllerLocator extends AbstractControllerLocator {
         if (menu instanceof StudentMenu) {
             StudentMenu studentMenu = (StudentMenu) menu;
             switch(studentMenu) {
-                case SUBJECTS: controller = new StudentController.SubjectsController(); break;
+                case SUBJECTS: controller = new SubjectsController(); break;
                 case STUDENTS: controller = new StudentsController(); break;
                 case SCORES: controller = new ScoresController(); break;
             }

@@ -25,7 +25,6 @@ public class MainRouter implements Router, Startable {
 
     @Override
     public void change(MainMenu mainMenu) {
-        //System.out.println("MainRouter-change(" + mainMenu + ")");
         ControllerLocator memlocator = MemberControllerLocator.getInstance();
         ControllerLocator studentlocator = StudentControllerLocator.getInstance();
 

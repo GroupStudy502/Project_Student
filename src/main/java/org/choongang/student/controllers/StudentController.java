@@ -56,34 +56,4 @@ public class StudentController extends AbstractController {
         }
     }
 
-    public static class SubjectsController extends AbstractController {
-        @Override
-        public void show() {
-            Templates.getInstance().render(StudentMenu.SUBJECTS);
-        }
-        @Override
-        public void prompt() {
-            Service<List<Subject>> service = StudentServiceLocator.getInstance().find(StudentMenu.SUBJECTS);
-            List<Subject> subjects = service.process();
-            String subjecting = subjects.stream()
-                    .map(r -> String.format("%d %s %s %s", r.getSubCode(), r.getSubNm(), r.getTeacherNm(), r.getSubDiv()))
-                    .collect(Collectors.joining("\n"));
-
-            Templates.getInstance().render(StudentMenu.SUBJECTS, () -> subjecting);
-            System.out.println("수정이나 삭제할 과목?");
-
-            int subCode = Integer.parseInt(promptWithValidation("과목코드: ", s -> !s.isBlank()));
-            String subNm = promptWithValidation("과목명: ", s -> !s.isBlank());
-            String teacherNm = promptWithValidation("교사: ", s -> !s.isBlank());
-            String subDiv = promptWithValidation("문이과구분(문/이): ", s -> !s.isBlank());
-
-            RequestSubject form = RequestSubject.builder()
-                    .subCode(subCode)
-                    .subNm(subNm)
-                    .teacherNm(teacherNm)
-                    .subDiv(subDiv)
-                    .build();
-        }
-
-    }
 }
