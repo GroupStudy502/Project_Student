@@ -83,29 +83,6 @@ public class StudentController extends AbstractController {
                     .teacherNm(teacherNm)
                     .subDiv(subDiv)
                     .build();
-
-
-            // 과목리스트 출력 후 학생관리 메뉴 이동
-            //MainRouter.getInstance().change(MainMenu.STUDENT);
-
-
-
-            //Router router = MainRouter.getInstance();
-            try {
-                System.out.println("여기여기1");
-
-                Service  service1 = StudentServiceLocator.getInstance().findUpdate(StudentMenu.SUBJECTS);
-                service1.process(form);
-
-                System.out.println("여기여기2");
-                Templates.getInstance().render(StudentMenu.SUBJECTS);
-                //router.change(StudentMenu.SUBJECTS); // 과목 수정 삭제 성공시 -> 과목관리페이지
-            } catch (RuntimeException e) {
-
-                System.err.println(e.getMessage());
-                Templates.getInstance().render(StudentMenu.SUBJECTS);
-                //router.change(MainMenu.LOGIN); // 로그인 실패시 -> 로그인 페이지
-            }
         }
 
     }

@@ -52,8 +52,4 @@ public class MemberServiceLocator extends AbstractServiceLocator {
         return service;
     }
 
-    @Override
-    public Service findUpdate(Menu menu) {
-        return null;
-    }
 }

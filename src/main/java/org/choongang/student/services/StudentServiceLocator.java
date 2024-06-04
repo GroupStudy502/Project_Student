@@ -57,30 +57,6 @@ public class StudentServiceLocator extends AbstractServiceLocator {
 
         return service;
     }
-    public Service findUpdate(Menu menu) {
-        /*
-        Service service = services.get(menu);
-        if (service != null) {
-            return service;
-        }
-         */
-        Service service = null;
-        if (menu instanceof StudentMenu) { // 과목, 학생, 성적
-            StudentMenu studentMenu = (StudentMenu)menu;
-            switch (studentMenu) {
-                case SUBJECTS: service = new SearchScore.SubjectServiceUpdate(subjectMapper()); break;
-                //case STUDENTS: service =
-                case SCORES: service = new SearchScore.SubjectServiceUpdate(subjectMapper()); break;
-            }
-
-        } else { // 주메뉴
-
-        }
-
-        //services.put(menu, service);
-
-        return service;
-    }
 
 
     @RequiredArgsConstructor

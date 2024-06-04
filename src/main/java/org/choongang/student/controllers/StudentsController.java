@@ -69,7 +69,9 @@ public class StudentsController extends AbstractController {
         if (menuNo == 2) { // 삭제
             Service<Long> service = locator.find(StudentMenu.DELETE);
             service.process(student.getSNo());
+
             System.out.println("\n삭제되었습니다.\n");
+
         } else { // 수정
 
             String itemNo = promptWithValidation("수정항목 번호 입력: ", s -> !s.isBlank());
@@ -95,6 +97,8 @@ public class StudentsController extends AbstractController {
 
                 Service<Student> service = locator.find(StudentMenu.SAVE);
                 service.process(form);
+
+                System.out.println("\n수정되었습니다.\n");
 
             } catch (Exception e) {
                 System.err.println("\n1~5번 항목을 선택하세요.");
