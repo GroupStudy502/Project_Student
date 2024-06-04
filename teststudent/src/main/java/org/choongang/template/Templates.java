@@ -46,13 +46,6 @@ public class Templates {
     public Template find(Menu menu, Supplier<String> hook) {
         Template tpl = tpls.get(menu);
 
-        if (hook != null) {
-            tpl.addHook(hook); // 이게 여기 와야 할듯
-        }
-        if (tpl != null) {
-            return tpl;
-        }
-
 
         if (menu instanceof GameMenu) {
             GameMenu gameMenu = (GameMenu) menu;

@@ -6,6 +6,10 @@ import org.choongang.member.controllers.RequestLogin;
 import org.choongang.member.entities.Member;
 import org.choongang.member.mapper.MemberMapper;
 import org.choongang.member.validators.LoginValidator;
+import org.choongang.student.controllers.SearchScore;
+import org.choongang.student.entities.Score;
+
+import java.util.List;
 
 public class LoginService implements Service<RequestLogin> {
 
@@ -29,4 +33,5 @@ public class LoginService implements Service<RequestLogin> {
         // 로그인 처리
         MemberSession.login(member);
     }
+
 }

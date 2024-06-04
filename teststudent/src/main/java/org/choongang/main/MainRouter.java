@@ -8,6 +8,7 @@ import org.choongang.global.Startable;
 import org.choongang.global.constants.MainMenu;
 import org.choongang.main.controllers.MainController;
 import org.choongang.member.controllers.MemberControllerLocator;
+import org.choongang.student.controllers.ScoresControllerLocator;
 import org.choongang.student.controllers.StudentControllerLocator;
 
 public class MainRouter implements Router, Startable {

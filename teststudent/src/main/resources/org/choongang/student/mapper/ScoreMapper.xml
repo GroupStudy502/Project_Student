@@ -2,9 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.choongang.score.mapper.ScoreMapper">
-    <resultMap id="scoreMap" type="org.choongang.score.entities.Score">
-        <result column="SEQ" property="seq" />
+<mapper namespace="org.choongang.student.mapper.ScoreMapper"><!--여기 위치가 잘못 되어있었어요~~-->
+    <resultMap id="scoreMap" type="org.choongang.student.entities.Score"><!--여기도 위치가 잘못 되어있었어요~~-->
         <result column="S_NO" property="sNo" />
         <result column="SUB_CODE" property="subCode" />
         <result column="S_YEAR" property="sYear" />
@@ -14,30 +13,24 @@
 
     <!-- 성적 목록 조회 -->
     <select id="getList" resultMap="scoreMap">
-        <bind name="pSubNm" value="'%' + _parameter.getSubNm() + '%'" />
-        <bind name="pSNm" value="'%' + _parameter.getSNm() + '%'" />
-        <bind name="pTeacherNm" value="'%' + _parameter.getTeacherNm() + '%'" />
+        <bind name="pSNo" value="'%' + _parameter.getSNo() + '%'" />
+        <bind name="pSubCode" value="'%' + _parameter.getSubCode() + '%'" />
+        <bind name="pSSem" value="'%' + _parameter.getSSem() + '%'" />
         <bind name="pKeyword" value="'%' + _parameter.getKeyword() + '%'" />
-        SELECT * FROM
-        (
-        SELECT ROWNUM NUM,
-        c.S_YEAR, c.S_SEM, c.S_SCORE, j.SUB_NM, j.TEACHER_NM, j.SUB_DIV, s.S_NM, s.S_NO,s.s_GEN
-        FROM SCORE c, SUBJECT j, STUDENT s
-        WHERE c.SUB_CODE = j.SUB_CODE(+) AND c.S_NO = s.S_NO(+)
-        ) m
+        SELECT * FROM ( SELECT ROWNUM NUM, t.* FROM SCORE t) m
         <where>
             <![CDATA[m.NUM >= {sRow} AND m.NUM <= {eRow}]]>
-            <if test="seq != null">
-                AND SUB_NM LIKE #{pSubNm}
+            <if test="sNo != null">
+                AND S_NO LIKE #{pSNo}
             </if>
-            <if test="userNm != null">
-                AND S_NM LIKE #{pSNm}
+            <if test="SubCode != null">
+                AND SUB_CODE LIKE #{pSubNm}
             </if>
-            <if test="teacherNm != null">
-                AND TEACHER_NM LIKE #{pTeacherNm}
+            <if test="sSem != null">
+                AND S_SEM LIKE #{pSSem}
             </if>
             <if test="keyword != null">
-                AND CONCAT(SUB_NM, S_NM, TEACHER_NM) LIKE #{pKeyword}
+                AND CONCAT(S_NO, SUB_CODE,S_SEM) LIKE #{pKeyword}
             </if>
         </where>
         ORDER BY m.S_SCORE DESC
@@ -47,68 +40,68 @@
     <select id="get" resultMap="scoreMap">
         SELECT * FROM SCORE
         <where>
-            <if test="seq != null">
-                SEQ=#{seq}
+            <if test="sNo != null">
+                SNO=#{sno}
             </if>
         </where>
     </select>
 
     <!-- 성적 목록 갯수, 페이징 구현시 활용 가능 -->
     <select id="getTotal" resultType="long">
-        <bind name="pSubCode" value="'%' + _parameter.getSNo() + '%'" />
-        <bind name="pSubNm" value="'%' + _parameter.getSNm() + '%'" />
+        <bind name="pSNo" value="'%' + _parameter.getSNo() + '%'" />
+        <bind name="pSubCode" value="'%' + _parameter.getSubCode() + '%'" />
+        <bind name="pSSem" value="'%' + _parameter.getSSem() + '%'" />
         <bind name="pKeyword" value="'%' + _parameter.getKeyword() + '%'" />
-        SELECT COUNT(*) FROM SUBJECT
+        SELECT COUNT(*) FROM SCORE
         <where>
-            <if test="seq != null">
-                AND SEQ LIKE #{pSubCode}
-            </if>
             <if test="sNo != null">
-                AND S_NO LIKE #{pSubNm}
+                AND S_NO LIKE #{pSNo}
+            </if>
+            <if test="SubCode != null">
+                AND SUB_CODE LIKE #{pSubNm}
+            </if>
+            <if test="sSem != null">
+                AND S_SEM LIKE #{pSSem}
             </if>
             <if test="keyword != null">
-                AND CONCAT(SEQ, S_NO) LIKE #{pKeyword}
+                AND CONCAT(S_NO, SUB_CODE,S_SEM) LIKE #{pKeyword}
             </if>
         </where>
     </select>
 
     <!-- 성적 등록 여부 파악 - 갯수가 나오면 이미 등록으로 판단 -->
     <select id="exist" resultType="int">
-        SELECT COUNT(*) FROM SCORE WHERE SEQ=#{seq}
+        SELECT COUNT(*) FROM SCORE WHERE S_No=#{sNo}
     </select>
 
     <!-- 성적 등록 -->
     <insert id="register">
-        <selectKey keyProperty="seq" order="BEFORE" resultType="long">
-            SELECT SCORE.NEXTVAL FROM DUAL
-        </selectKey>
-
-        INSERT INTO SCORE (SEQ, S_NO, SUB_CODE, S_YEAR, S_SEM, S_SCORE )
-        VALUES (#{seq}, #{sNo}, #{subCode}, #{syear}, #{sSem}, #{sScore})
+        INSERT INTO SCORE (S_NO, SUB_CODE, S_YEAR, S_SEM, S_SCORE )
+        VALUES (#{sNo}, #{subCode}, #{sYear}, #{sSem}, #{sScore})
     </insert>
 
     <!-- 성적 정보 수정 -->
     <update id="modify">
         UPDATE SCORE
         <set>
-            <if test="sNo != null">
-                S_NO=#{sNo},
-            </if>
             <if test="subCode != null">
-                SUB_CODE=#{subCode},
+                SUB_CODE=#{sSubCode},
             </if>
             <if test="sYear != null">
                 S_YEAR=#{sYear},
+            </if>
+            <if test="sSem != null">
+                S_SEM=#{sSem},
             </if>
             <if test="sScore != null">
                 S_SCORE=#{sScore},
             </if>
         </set>
-        WHERE SEQ=#{seq}
+        WHERE S_No=#{sNo}
     </update>
 
     <!-- 성적 삭제 -->
     <delete id="delete">
-        DELETE FROM SCORE WHERE SEQ=#{seq}
+        DELETE FROM SCORE WHERE S_No=#{sNo}
     </delete>
 </mapper>
