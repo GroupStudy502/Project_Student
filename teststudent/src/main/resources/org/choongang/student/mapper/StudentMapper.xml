@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.choongang.student.mapper.StudentMapper">
+    <resultMap id="studentMap" type="org.choongang.student.entities.Student">
+        <result column="S_NO" property="sNo" />
+        <result column="S_NM" property="sNm" />
+        <result column="S_GRADE" property="sGrade" />
+        <result column="S_GEN" property="sGen" />
+        <result column="S_ADM_DT" property="sAdmDt" />
+        <result column="S_STAT" property="sStat" />
+    </resultMap>
+
+    <!-- 학생 목록 조회 -->
+    <select id="getList" resultMap="studentMap">
+        <bind name="pSno" value="'%' + _parameter.getSNo() + '%'" />
+        <bind name="pSNm" value="'%' + _parameter.getSNm() + '%'" />
+        <bind name="pKeyword" value="'%' + _parameter.getKeyword() + '%'" />
+        SELECT * FROM (SELECT ROWNUM NUM, t.* FROM STUDENT t) m
+        <where>
+            <![CDATA[m.NUM >= {sRow} AND m.NUM <= {eRow}]]>
+            <if test="sNo != null">
+                AND S_NO LIKE #{pSno}
+            </if>
+            <if test="userNm != null">
+                AND S_NM LIKE #{pSNm}
+            </if>
+            <if test="keyword != null">
+                AND CONCAT(S_NO, S_NM) LIKE #{pKeyword}
+            </if>
+        </where>
+        ORDER BY m.S_ADM_DT DESC
+    </select>
+
+    <!-- 학생 개별 조회 -->
+    <select id="get" resultMap="studentMap">
+        SELECT * FROM STUDENT WHERE S_NO=#{sNo}
+    </select>
+
+    <!-- 학생 목록 갯수, 페이징 구현시 활용 가능 -->
+    <select id="getTotal" resultType="long">
+        <bind name="pSno" value="'%' + _parameter.getSNo() + '%'" />
+        <bind name="pSNm" value="'%' + _parameter.getSNm() + '%'" />
+        <bind name="pKeyword" value="'%' + _parameter.getKeyword() + '%'" />
+        SELECT COUNT(*) FROM STUDENT
+        <where>
+            <if test="sNo != null">
+                AND S_NO LIKE #{pSno}
+            </if>
+            <if test="sNm != null">
+                AND S_NM LIKE #{pSNm}
+            </if>
+            <if test="keyword != null">
+                AND CONCAT(S_NO, S_NM) LIKE #{pKeyword}
+            </if>
+        </where>
+    </select>
+
+    <!-- 학생 등록 여부 파악 - 갯수가 나오면 이미 등록으로 판단 -->
+    <select id="exist" resultType="int">
+        SELECT COUNT(*) FROM STUDENT WHERE S_NO=#{sNo}
+    </select>
+
+    <!-- 학생 등록 -->
+    <insert id="register">
+        INSERT INTO STUDENT (S_NO, S_NM, S_GRADE, S_GEN, S_ADM_DT, S_STAT  )
+        VALUES (#{sNo}, #{sNm}, #{sGrade}, #{sGen}, #{sAdmDt}, #{sStat})
+    </insert>
+
+    <!-- 학생 정보 수정 -->
+    <update id="modify">
+        UPDATE STUDENT
+        <set>
+            <if test="sNm != null">
+                S_NM=#{sNm},
+            </if>
+            <if test="sGrade != null">
+                S_GRADE=#{sGrade},
+            </if>
+            <if test="sGen != null">
+                S_GEN=#{sGen},
+            </if>
+            <if test="sAdmDt != null">
+                S_ADM_DT=#{sAdmDt},
+            </if>
+            <if test="sStat != null">
+                S_STAT=#{sStat},
+            </if>
+        </set>
+        WHERE S_NO=#{sNo}
+    </update>
+
+    <!-- 학생 삭제 -->
+    <delete id="delete">
+        DELETE FROM STUDENT WHERE S_NO=#{sNo}
+    </delete>
+</mapper>

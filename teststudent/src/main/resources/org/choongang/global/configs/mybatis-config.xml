@@ -6,7 +6,7 @@
     <properties>
         <property name="driver" value="oracle.jdbc.driver.OracleDriver" />
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-        <property name="username" value="PROJECT2_2" />
+        <property name="username" value="teststudent" />
         <property name="password" value="oracle" />
     </properties>
     <environments default="dev">
@@ -24,5 +24,6 @@
         <mapper resource="org/choongang/member/mapper/MemberMapper.xml" />
         <mapper resource="org/choongang/game/mapper/PointLogMapper.xml" />
         <mapper resource="org/choongang/student/mapper/SubjectMapper.xml" />
+        <mapper resource="org/choongang/student/mapper/StudentMapper.xml" />
     </mappers>
 </configuration>

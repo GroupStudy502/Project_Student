@@ -11,4 +11,6 @@ public enum StudentMenu implements Menu {
     SUBUPDATE, //과목수정
     SUBDELETE, //과목삭제
 
+    SAVE, //저장
+    DELETE// 삭제
 }
