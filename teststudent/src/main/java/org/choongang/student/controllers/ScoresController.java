@@ -10,7 +10,7 @@ public class ScoresController extends AbstractController {
     @Override
     public void show() {
         System.out.println("*******************************");
-        System.out.println("*******성적리스트 여기구현 *******");
+        System.out.println("******* 성적리스트 여기구현 *******");
         System.out.println("*******************************");
         /*
         Service<List<Subject>> service = SubjectServiceLocator.getInstance().find(StudentMenu.SUBJECTS);

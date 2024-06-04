@@ -53,7 +53,13 @@ public class MemberServiceLocator extends AbstractServiceLocator {
     }
 
     @Override
+    public Service findDelete(Menu menu) {
+        return null;
+    }
     public Service findUpdate(Menu menu) {
+        return null;
+    }
+    public Service findInsert(Menu menu) {
         return null;
     }
 }

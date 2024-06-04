@@ -10,10 +10,7 @@ import org.choongang.template.main.MainTpl;
 import org.choongang.template.member.JoinTpl;
 import org.choongang.template.member.LoginTpl;
 import org.choongang.template.member.MypageTpl;
-import org.choongang.template.student.ScoresTpl;
-import org.choongang.template.student.StudentTpl;
-import org.choongang.template.student.SubjectsTpl;
-import org.choongang.template.student.StudentsTpl;
+import org.choongang.template.student.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,12 +44,14 @@ public class Templates {
         Template tpl = tpls.get(menu);
 
         if (hook != null) {
-            tpl.addHook(hook); // 이게 여기 와야 할듯
+           tpl = null;
+        } else if (tpl != null) {
+            tpl.addHook(null);
         }
+
         if (tpl != null) {
             return tpl;
         }
-
 
         if (menu instanceof GameMenu) {
             GameMenu gameMenu = (GameMenu) menu;
@@ -86,13 +85,22 @@ public class Templates {
             StudentMenu studentMenu = (StudentMenu)menu;
             switch (studentMenu) {
                 case SUBJECTS:
-                    tpl = new SubjectsTpl();
+                    tpl = new SubjectsListTpl();
                     break;
                 case STUDENTS:
                     tpl = new StudentsTpl();
                     break;
                 case SCORES:
                     tpl = new ScoresTpl();
+                    break;
+                case SUBINSERT:
+                    tpl = new SubjectsInsertTpl();
+                    break;
+                case SUBDELETE:
+                    tpl = new SubjectsUpdateTpl();
+                    break;
+                case SUBUPDATE:
+                    tpl = new SubjectsDeleteTpl();
                     break;
                 default:
                     tpl = new MainTpl();
@@ -101,6 +109,7 @@ public class Templates {
             System.out.println("아직 미구현 메뉴별 템플릿");
 
         }
+
         if (hook != null) {
             tpl.addHook(hook);
         }

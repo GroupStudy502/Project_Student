@@ -14,7 +14,6 @@ public class SubjectServiceList implements Service<List<Subject>>, Listable<Obje
 
     @Override
     public List<Subject> process() {
-        System.out.println("**SubjectService-process1()");
 
         return mapper.getSubject();
 
