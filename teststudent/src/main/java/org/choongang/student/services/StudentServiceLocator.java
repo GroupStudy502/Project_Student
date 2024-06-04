@@ -1,12 +1,17 @@
 package org.choongang.student.services;
 
+import lombok.RequiredArgsConstructor;
 import org.choongang.global.AbstractServiceLocator;
 import org.choongang.global.Menu;
 import org.choongang.global.Service;
 import org.choongang.global.ServiceLocator;
 import org.choongang.global.configs.DBConn;
 import org.choongang.student.constants.StudentMenu;
+import org.choongang.student.entities.Subject;
+import org.choongang.student.mapper.StudentMapper;
 import org.choongang.student.mapper.SubjectMapper;
+
+import java.util.List;
 
 public class StudentServiceLocator extends AbstractServiceLocator {
 
@@ -20,12 +25,16 @@ public class StudentServiceLocator extends AbstractServiceLocator {
         return instance;
     }
 
-    public SubjectMapper SubjectMapper() {
+    public SubjectMapper subjectMapper() {
         return DBConn.getSession().getMapper(SubjectMapper.class);
+    }
+    public StudentMapper studentMapper() {
+        return DBConn.getSession().getMapper(StudentMapper.class);
     }
 
     @Override
     public Service find(Menu menu) {
+//        System.out.println("**StudentServiceLocator-find(" + menu + ")");
         Service service = services.get(menu);
         if (service != null) {
             return service;
@@ -34,67 +43,57 @@ public class StudentServiceLocator extends AbstractServiceLocator {
         if (menu instanceof StudentMenu) { // 과목, 학생, 성적
             StudentMenu studentMenu = (StudentMenu)menu;
             switch (studentMenu) {
-                case SUBJECTS: service = new SubjectServiceList(SubjectMapper()); break;
-                case STUDENTS:
-                case SCORES:
-
+                case SUBJECTS: service = new SubjectServiceList(subjectMapper()); break;
+                case STUDENTS: service = new StudentServiceList(studentMapper()); break;
+                case SCORES: service = new SubjectServiceList(subjectMapper()); break;
+                case SAVE: service = new StudentSaveService(studentMapper()); break;
+                case DELETE: service = new StudentDeleteService(studentMapper()); break;
             }
 
         } else { // 주메뉴
 
         }
 
-        //services.put(menu, service);///이건 .. DB 업데이트 안되므로 쓰지말기
+        //services.put(menu, service);
 
         return service;
     }
     public Service findUpdate(Menu menu) {
-
+//        System.out.println("**StudentServiceLocator-findUpdate(" + menu + ")");
+        /*
+        Service service = services.get(menu);
+        if (service != null) {
+            return service;
+        }
+         */
         Service service = null;
         if (menu instanceof StudentMenu) { // 과목, 학생, 성적
             StudentMenu studentMenu = (StudentMenu)menu;
             switch (studentMenu) {
-                case SUBJECTS: service = new SubjectServiceUpdate(SubjectMapper()); break;
-                case STUDENTS:
-                case SCORES:
+                case SUBJECTS: service = new SearchScore.SubjectServiceUpdate(subjectMapper()); break;
+                case STUDENTS: service = new SearchScore.SubjectServiceUpdate(subjectMapper()); break;
+                case SCORES: service = new SearchScore.SubjectServiceUpdate(subjectMapper()); break;
             }
 
         } else { // 주메뉴
 
         }
+
+        //services.put(menu, service);
+
         return service;
     }
-    public Service findInsert(Menu menu) {
 
-        Service service = null;
-        if (menu instanceof StudentMenu) { // 과목, 학생, 성적
-            StudentMenu studentMenu = (StudentMenu)menu;
-            switch (studentMenu) {
-                case SUBJECTS: service = new SubjectServiceInsert(SubjectMapper()); break;
-                case STUDENTS:
-                case SCORES:
-            }
 
-        } else { // 주메뉴
+    @RequiredArgsConstructor
+    public static class SubjectServiceList implements Service<List<Subject>> {
+        private final SubjectMapper mapper;
+
+        @Override
+        public List<Subject> process() {
+//            System.out.println("**SubjectService-process1()");
+            return mapper.getSubject();
 
         }
-        return service;
     }
-    public Service findDelete(Menu menu) {
-
-        Service service = null;
-        if (menu instanceof StudentMenu) { // 과목, 학생, 성적
-            StudentMenu studentMenu = (StudentMenu)menu;
-            switch (studentMenu) {
-                case SUBJECTS: service = new SubjectServiceDelete(SubjectMapper()); break;
-                case STUDENTS:
-                case SCORES:
-            }
-
-        } else { // 주메뉴
-
-        }
-        return service;
-    }
-
 }

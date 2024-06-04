@@ -21,6 +21,7 @@ public class StudentControllerLocator extends AbstractControllerLocator {
 
     @Override
     public Controller find(Menu menu) {
+        //    System.out.println("**StudentControllerLocator-find(" + menu + ")");
         Controller controller = controllers.get(menu);
         if (controller != null) {
             return controller;
@@ -30,12 +31,9 @@ public class StudentControllerLocator extends AbstractControllerLocator {
         if (menu instanceof StudentMenu) {
             StudentMenu studentMenu = (StudentMenu) menu;
             switch(studentMenu) {
-                case SUBJECTS: controller = new SubjectsListController(); break;
+                case SUBJECTS: controller = new StudentController.SubjectsController(); break;
                 case STUDENTS: controller = new StudentsController(); break;
                 case SCORES: controller = new ScoresController(); break;
-                case SUBINSERT: controller = new SubjectsInsertController(); break;
-                case SUBUPDATE: controller = new SubjectsUpdateController(); break;
-                case SUBDELETE: controller = new SubjectsDeleteController(); break;
             }
         } else { // 학생 메인 메뉴
             controller = new StudentController();
