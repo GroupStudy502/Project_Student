@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 public class SubjectsListController extends AbstractController {
     @Override
     public void show() {
-        //System.out.println("**SubjectsListController-show()");
         Templates.getInstance().render(StudentMenu.SUBJECTS);
     }
     @Override
@@ -27,6 +26,7 @@ public class SubjectsListController extends AbstractController {
         String subjecting = subjects.stream()
                 .map(r -> String.format("%d %s %s %s", r.getSubCode(), r.getSubNm(), r.getTeacherNm(), r.getSubDiv()))
                 .collect(Collectors.joining("\n"));
+
         Templates.getInstance().render(StudentMenu.SUBJECTS, () -> subjecting);
 
         System.out.println("\n과목정보 작업을 고르세요");
@@ -46,6 +46,7 @@ public class SubjectsListController extends AbstractController {
         }
 
         controller.run();
+
         //MainRouter.getInstance().change(MainMenu.STUDENT);
     }
 

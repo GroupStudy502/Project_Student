@@ -26,7 +26,6 @@ public class StudentServiceLocator extends AbstractServiceLocator {
 
     @Override
     public Service find(Menu menu) {
-        System.out.println("**StudentServiceLocator-find(" + menu + ")");
         Service service = services.get(menu);
         if (service != null) {
             return service;
@@ -37,7 +36,7 @@ public class StudentServiceLocator extends AbstractServiceLocator {
             switch (studentMenu) {
                 case SUBJECTS: service = new SubjectServiceList(SubjectMapper()); break;
                 case STUDENTS:
-                case SCORES: service = new SubjectServiceList(SubjectMapper()); break;
+                case SCORES:
             }
 
         } else { // 주메뉴
@@ -49,7 +48,6 @@ public class StudentServiceLocator extends AbstractServiceLocator {
         return service;
     }
     public Service findUpdate(Menu menu) {
-        System.out.println("**StudentServiceLocator-findUpdate(" + menu + ")");
 
         Service service = null;
         if (menu instanceof StudentMenu) { // 과목, 학생, 성적
@@ -66,7 +64,6 @@ public class StudentServiceLocator extends AbstractServiceLocator {
         return service;
     }
     public Service findInsert(Menu menu) {
-        System.out.println("**StudentServiceLocator-findInsert(" + menu + ")");
 
         Service service = null;
         if (menu instanceof StudentMenu) { // 과목, 학생, 성적
@@ -83,7 +80,6 @@ public class StudentServiceLocator extends AbstractServiceLocator {
         return service;
     }
     public Service findDelete(Menu menu) {
-        System.out.println("**StudentServiceLocator-findDelete(" + menu + ")");
 
         Service service = null;
         if (menu instanceof StudentMenu) { // 과목, 학생, 성적

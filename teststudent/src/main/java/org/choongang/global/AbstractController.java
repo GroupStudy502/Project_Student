@@ -76,7 +76,6 @@ public abstract class AbstractController implements Controller {
     }
 
     private void change(int menuNo) {
-        System.out.println("**AbstractController-change(" + menuNo + ")");
         MainMenu mainMenu = null;
         if (MemberSession.isLogin()) { // 로그인 상태인 경우
             switch (menuNo) {
