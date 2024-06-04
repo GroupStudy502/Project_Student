@@ -6,7 +6,6 @@ import org.choongang.student.constants.StudentMenu;
 import org.choongang.template.main.MainTpl;
 import org.choongang.template.member.JoinTpl;
 import org.choongang.template.member.LoginTpl;
-import org.choongang.template.member.MypageTpl;
 import org.choongang.template.student.ScoresTpl;
 import org.choongang.template.student.StudentTpl;
 import org.choongang.template.student.SubjectsTpl;

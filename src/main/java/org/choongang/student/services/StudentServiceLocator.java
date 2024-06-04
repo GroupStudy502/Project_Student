@@ -53,8 +53,6 @@ public class StudentServiceLocator extends AbstractServiceLocator {
 
         }
 
-        //services.put(menu, service);
-
         return service;
     }
 
@@ -65,7 +63,6 @@ public class StudentServiceLocator extends AbstractServiceLocator {
 
         @Override
         public List<Subject> process() {
-            System.out.println("**SubjectService-process1()");
             return mapper.getSubject();
 
         }
