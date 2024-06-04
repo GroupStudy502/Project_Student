@@ -37,6 +37,7 @@ public class StudentServiceLocator extends AbstractServiceLocator {
                 case SUBJECTS: service = new SubjectServiceList(SubjectMapper()); break;
                 case STUDENTS:
                 case SCORES:
+
             }
 
         } else { // 주메뉴
