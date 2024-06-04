@@ -35,17 +35,13 @@ public class StudentController extends AbstractController {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                System.err.println("메뉴 1,2,3,4번 중에서 선택하세요.");
+                System.err.println("메뉴 1,2,3,4 중에서 선택하세요.");
             }
         }
     }
     public void change(int menuNo){
-      //  System.out.println("**StudentController-change(" + menuNo + ")");
-
-        Controller controller = null;
-
         ControllerLocator locator = StudentControllerLocator.getInstance();
-
+        Controller controller = null;
         switch(menuNo) {
             case 1: controller = locator.find(StudentMenu.SUBJECTS); break;
             case 2: controller = locator.find(StudentMenu.STUDENTS); break;
@@ -56,14 +52,14 @@ public class StudentController extends AbstractController {
         }
 
         if (controller != null) {
-            controller.run();   // ??
+            controller.run();
         }
     }
 
     public static class SubjectsController extends AbstractController {
         @Override
         public void show() {
-        //    System.out.println("**SubjectsController-show()");
+            System.out.println("**SubjectsController-show()");
             Templates.getInstance().render(StudentMenu.SUBJECTS);
         }
         @Override
@@ -97,12 +93,12 @@ public class StudentController extends AbstractController {
 
             //Router router = MainRouter.getInstance();
             try {
-              //  System.out.println("여기여기1");
+                System.out.println("여기여기1");
 
                 Service  service1 = StudentServiceLocator.getInstance().findUpdate(StudentMenu.SUBJECTS);
                 service1.process(form);
 
-           //     System.out.println("여기여기2");
+                System.out.println("여기여기2");
                 Templates.getInstance().render(StudentMenu.SUBJECTS);
                 //router.change(StudentMenu.SUBJECTS); // 과목 수정 삭제 성공시 -> 과목관리페이지
             } catch (RuntimeException e) {

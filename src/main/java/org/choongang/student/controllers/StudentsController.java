@@ -20,22 +20,7 @@ public class StudentsController extends AbstractController {
 
     @Override
     public void show() {
-//        System.out.println("*******************************");
-//        System.out.println("******* 학생리스트 여기구현 *******");
-//        System.out.println("*******************************");
 
-        /*
-        Service<List<Subject>> service = SubjectServiceLocator.getInstance().find(StudentMenu.SUBJECTS);
-
-        List<Subject> ranks = service.process();
-        String ranking = ranks.stream()
-                .map(r -> String.format("%d등 - %s(%s)/%d점", r.getRank(), r.getUserNm(), r.getUserId(), r.getTotal()))
-                .collect(Collectors.joining("\n"));
-
-        */
-       // Templates.getInstance().render(StudentMenu.STUDENTS);
-        // 과목리스트 출력 후 학생관리 메뉴 이동
-       // MainRouter.getInstance().change(MainMenu.STUDENT);
     }
 
     @Override
@@ -84,6 +69,7 @@ public class StudentsController extends AbstractController {
         if (menuNo == 2) { // 삭제
             Service<Long> service = locator.find(StudentMenu.DELETE);
             service.process(student.getSNo());
+            System.out.println("\n삭제되었습니다.\n");
         } else { // 수정
 
             String itemNo = promptWithValidation("수정항목 번호 입력: ", s -> !s.isBlank());
