@@ -93,13 +93,13 @@ public class StudentsController extends AbstractController {
                     case 5: form.setSStat(changeStr); break;
                 }
 
+                Service<Student> service = locator.find(StudentMenu.SAVE);
+                service.process(form);
+
             } catch (Exception e) {
                 System.err.println("\n1~5번 항목을 선택하세요.");
             }
 
-
-            Service<Student> service = locator.find(StudentMenu.SAVE);
-            service.process(student);
         }
     }
 }
