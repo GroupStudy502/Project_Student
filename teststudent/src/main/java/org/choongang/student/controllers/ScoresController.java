@@ -23,7 +23,7 @@ public class ScoresController extends AbstractController {
 
         String scores = items == null ? "":items.stream().map(s -> String.format("학번:%d, 과목코드: %d, %d학년, %d학기, 성적: %d%n", s.getSNo(), s.getSubCode(), s.getSYear(), s.getSSem(), s.getSScore())).collect(Collectors.joining("\n"));
 
-        Templates.getInstance().render(StudentMenu.SCORES, () -> scores);
+        //Templates.getInstance().render(StudentMenu.SCORES, () -> scores);
 
     }
 
@@ -32,37 +32,38 @@ public class ScoresController extends AbstractController {
         Gettable<Long, Score> service = (Gettable<Long, Score>) StudentServiceLocator.getInstance().find(StudentMenu.SCORES);
 
         while(true) {
-            String studentNo = promptWithValidation("학번: ", s -> !s.isBlank());
+            String studentNo = promptWithValidation("학번 입력: ", s -> !s.isBlank());
             try {
                 long sNo = Long.parseLong(studentNo);
-                System.out.println(sNo);
-                System.out.println("여기");
-                Score score = service.get(sNo);
-                if (score == null) {
+
+                List<Score> scores = (List<Score>)service.get(sNo);
+                if (scores == null || scores.isEmpty() ) {
 
                     System.err.println("조회된 성적이 없습니다");
                     continue;
                 }
 
-                System.out.printf("학번: %d%n", score.getSNo());
-                System.out.printf("1. 과목코드: %s%n", score.getSubCode());
-                System.out.printf("2. 학년: %d%n", score.getSYear());
-                System.out.printf("3. 학기: %s%n", score.getSSem());
-                System.out.printf("4. 성적: %s%n", score.getSScore());
-                System.out.println(Templates.getInstance().line());
+                for (Score score : scores) {
+                    System.out.printf("학번: %d%n", score.getSNo());
+                    System.out.printf("1. 과목코드: %s%n", score.getSubCode());
+                    System.out.printf("2. 학년: %d%n", score.getSYear());
+                    System.out.printf("3. 학기: %s%n", score.getSSem());
+                    System.out.printf("4. 성적: %s%n", score.getSScore());
+                    System.out.println(Templates.getInstance().line());
 
-                System.out.print("수정(1), 삭제(2):");
 
-                String menuNo = sc.nextLine();
-                try {
-                    int m = Integer.parseInt(menuNo);
-                    process(m, score);
-                    MainRouter.getInstance().change(MainMenu.STUDENT);
-                    break;
-                } catch (Exception e) {
-                    System.err.println("1, 2번 메뉴만 선택하세요.");
+                    System.out.print("수정(1), 삭제(2):");
+
+                    String menuNo = sc.nextLine();
+                    try {
+                        int m = Integer.parseInt(menuNo);
+                        process(m, score);
+                        MainRouter.getInstance().change(MainMenu.STUDENT);
+                        break;
+                    } catch (Exception e) {
+                        System.err.println("1, 2번 메뉴만 선택하세요.");
+                    }
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
                 System.err.println("\n학번은 숫자로 입력하세요.");

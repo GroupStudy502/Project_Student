@@ -8,7 +8,7 @@ import java.util.List;
 public interface ScoreMapper {
     // 재확인
     List<Score> getScore(SearchScore search);
-    Score get(long sNo);
+    List<Score> get(long sNo);
     int exist(long sNo);
     int register(Score score);
     int modify(Score score);

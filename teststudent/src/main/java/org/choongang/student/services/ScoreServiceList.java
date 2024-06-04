@@ -15,7 +15,7 @@ import org.choongang.student.mapper.ScoreMapper;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class ScoreServiceList implements Service<List<Score>>, Listable<SearchScore, Score>, Gettable<Long, Score> {
+public class ScoreServiceList implements Service<List<Score>>, Listable<SearchScore, Score>, Gettable<Long, List<Score>> {
     private final ScoreMapper mapper;
 
     @Override
@@ -23,7 +23,7 @@ public class ScoreServiceList implements Service<List<Score>>, Listable<SearchSc
         return mapper.getScore(search);
     }
     @Override
-    public Score get(Long data) {
+    public List<Score> get(Long data) {
         return mapper.get(data);
     }
 }

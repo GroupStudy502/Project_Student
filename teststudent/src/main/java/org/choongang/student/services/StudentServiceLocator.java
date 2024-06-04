@@ -31,7 +31,6 @@ public class StudentServiceLocator extends AbstractServiceLocator {
 
     @Override
     public Service find(Menu menu) {
-        System.out.println("**StudentServiceLocator-find(" + menu + ")");
         Service service = services.get(menu);
         if (service != null) {
             return service;
@@ -57,7 +56,7 @@ public class StudentServiceLocator extends AbstractServiceLocator {
         return service;
     }
     public Service findUpdate(Menu menu) {
-        System.out.println("**StudentServiceLocator-findUpdate(" + menu + ")");
+        //System.out.println("**StudentServiceLocator-findUpdate(" + menu + ")");
         /*
         Service service = services.get(menu);
         if (service != null) {

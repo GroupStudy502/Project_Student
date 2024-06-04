@@ -38,7 +38,7 @@
 
     <!-- 성적 개별 조회 -->
     <select id="get" resultMap="scoreMap">
-        <![CDATA[SELECT * FROM SCORE WHERE S_NO=#{sNo} AND ROWNUM < 1]]>
+        SELECT * FROM SCORE WHERE S_NO=#{sNo} ORDER BY S_YEAR, S_SEM
     </select>
 
     <!-- 성적 목록 갯수, 페이징 구현시 활용 가능 -->

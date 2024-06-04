@@ -33,7 +33,7 @@ public class StudentController extends AbstractController {
         }
     }
     public void change(int menuNo){
-        System.out.println("**StudentController-change(" + menuNo + ")");
+        //System.out.println("**StudentController-change(" + menuNo + ")");
         ControllerLocator locator = StudentControllerLocator.getInstance();
         Controller controller = null;
         switch(menuNo) {
