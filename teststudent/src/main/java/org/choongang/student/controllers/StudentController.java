@@ -56,14 +56,14 @@ public class StudentController extends AbstractController {
         }
 
         if (controller != null) {
-            controller.run();
+            controller.run();   // ??
         }
     }
 
     public static class SubjectsController extends AbstractController {
         @Override
         public void show() {
-            System.out.println("**SubjectsController-show()");
+        //    System.out.println("**SubjectsController-show()");
             Templates.getInstance().render(StudentMenu.SUBJECTS);
         }
         @Override
@@ -97,12 +97,12 @@ public class StudentController extends AbstractController {
 
             //Router router = MainRouter.getInstance();
             try {
-                System.out.println("여기여기1");
+              //  System.out.println("여기여기1");
 
                 Service  service1 = StudentServiceLocator.getInstance().findUpdate(StudentMenu.SUBJECTS);
                 service1.process(form);
 
-                System.out.println("여기여기2");
+           //     System.out.println("여기여기2");
                 Templates.getInstance().render(StudentMenu.SUBJECTS);
                 //router.change(StudentMenu.SUBJECTS); // 과목 수정 삭제 성공시 -> 과목관리페이지
             } catch (RuntimeException e) {

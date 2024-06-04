@@ -20,9 +20,9 @@ public class StudentsController extends AbstractController {
 
     @Override
     public void show() {
-        System.out.println("*******************************");
-        System.out.println("******* 학생리스트 여기구현 *******");
-        System.out.println("*******************************");
+//        System.out.println("*******************************");
+//        System.out.println("******* 학생리스트 여기구현 *******");
+//        System.out.println("*******************************");
 
         /*
         Service<List<Subject>> service = SubjectServiceLocator.getInstance().find(StudentMenu.SUBJECTS);
