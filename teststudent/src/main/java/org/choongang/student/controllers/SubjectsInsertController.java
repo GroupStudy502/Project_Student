@@ -10,7 +10,6 @@ import org.choongang.student.services.StudentServiceLocator;
 public class SubjectsInsertController extends AbstractController {
     @Override
     public void show() {
-        System.out.println("**SubjectsInsertController-show()");
     }
     @Override
     public void prompt() {

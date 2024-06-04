@@ -10,7 +10,6 @@ import org.choongang.student.services.StudentServiceLocator;
 public class SubjectsDeleteController extends AbstractController {
     @Override
     public void show() {
-        System.out.println("**SubjectsDeleteController-show()");
     }
     @Override
     public void prompt() {

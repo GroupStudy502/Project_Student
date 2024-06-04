@@ -44,13 +44,14 @@ public class Templates {
         Template tpl = tpls.get(menu);
 
         if (hook != null) {
-            tpl.addHook(hook); // 이게 여기 와야 할듯
+           tpl = null;
+        } else if (tpl != null) {
+            tpl.addHook(null);
         }
 
         if (tpl != null) {
             return tpl;
         }
-
 
         if (menu instanceof GameMenu) {
             GameMenu gameMenu = (GameMenu) menu;

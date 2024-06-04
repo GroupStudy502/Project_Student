@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public class SubjectsUpdateController extends AbstractController {
     @Override
     public void show() {
-        System.out.println("**SubjectsUpdateController-show()");
     }
     @Override
     public void prompt() {
