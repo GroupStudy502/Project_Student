@@ -17,7 +17,7 @@ public class StudentsTpl implements Template {
     public String getTpl() {
 
         StringBuffer sb = new StringBuffer(2000);
-        sb.append("학생보기 템플릿 StudentsTpl\n");
+//        sb.append("학생보기 템플릿 StudentsTpl\n");
         sb.append(Templates.getInstance().line());
         if (hook != null) {
             sb.append(hook.get());

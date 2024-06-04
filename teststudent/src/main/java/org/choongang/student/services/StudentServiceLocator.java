@@ -34,7 +34,7 @@ public class StudentServiceLocator extends AbstractServiceLocator {
 
     @Override
     public Service find(Menu menu) {
-        System.out.println("**StudentServiceLocator-find(" + menu + ")");
+//        System.out.println("**StudentServiceLocator-find(" + menu + ")");
         Service service = services.get(menu);
         if (service != null) {
             return service;
@@ -59,7 +59,7 @@ public class StudentServiceLocator extends AbstractServiceLocator {
         return service;
     }
     public Service findUpdate(Menu menu) {
-        System.out.println("**StudentServiceLocator-findUpdate(" + menu + ")");
+//        System.out.println("**StudentServiceLocator-findUpdate(" + menu + ")");
         /*
         Service service = services.get(menu);
         if (service != null) {
@@ -71,7 +71,7 @@ public class StudentServiceLocator extends AbstractServiceLocator {
             StudentMenu studentMenu = (StudentMenu)menu;
             switch (studentMenu) {
                 case SUBJECTS: service = new SearchScore.SubjectServiceUpdate(subjectMapper()); break;
-                case STUDENTS:
+                case STUDENTS: service =
                 case SCORES: service = new SearchScore.SubjectServiceUpdate(subjectMapper()); break;
             }
 
@@ -91,7 +91,7 @@ public class StudentServiceLocator extends AbstractServiceLocator {
 
         @Override
         public List<Subject> process() {
-            System.out.println("**SubjectService-process1()");
+//            System.out.println("**SubjectService-process1()");
             return mapper.getSubject();
 
         }

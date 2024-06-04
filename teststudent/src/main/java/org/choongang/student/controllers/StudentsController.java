@@ -18,25 +18,7 @@ public class StudentsController extends AbstractController {
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    @Override
-    public void show() {
-//        System.out.println("*******************************");
-//        System.out.println("******* 학생리스트 여기구현 *******");
-//        System.out.println("*******************************");
 
-        /*
-        Service<List<Subject>> service = SubjectServiceLocator.getInstance().find(StudentMenu.SUBJECTS);
-
-        List<Subject> ranks = service.process();
-        String ranking = ranks.stream()
-                .map(r -> String.format("%d등 - %s(%s)/%d점", r.getRank(), r.getUserNm(), r.getUserId(), r.getTotal()))
-                .collect(Collectors.joining("\n"));
-
-        */
-       // Templates.getInstance().render(StudentMenu.STUDENTS);
-        // 과목리스트 출력 후 학생관리 메뉴 이동
-       // MainRouter.getInstance().change(MainMenu.STUDENT);
-    }
 
     @Override
     public void prompt() {
@@ -62,7 +44,7 @@ public class StudentsController extends AbstractController {
 
                 System.out.print("수정(1), 삭제(2):");
 
-                String menuNo = sc.nextLine();
+                String menuNo = sc.nextLine(); //1번인지 2번인지
                 try {
                     int m = Integer.parseInt(menuNo);
                     process(m, student);
@@ -115,5 +97,14 @@ public class StudentsController extends AbstractController {
             Service<Student> service = locator.find(StudentMenu.SAVE);
             service.process(student);
         }
+
+    }
+
+
+    @Override
+    public void show() {
+        Templates.getInstance().render(StudentMenu.STUDENTS);
+
+
     }
 }

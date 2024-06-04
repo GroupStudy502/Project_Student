@@ -11,7 +11,7 @@ public class StudentSaveService implements Service<Student>  {
     public StudentSaveService(StudentMapper mapper) {
         this.mapper = mapper;
     }
-
+//테스트
     @Override
     public void process(Student form) {
         long sNo = form.getSNo();
