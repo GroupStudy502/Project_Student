@@ -59,9 +59,6 @@ public class Templates {
                 case LOGIN:
                     tpl = new LoginTpl();
                     break;
-                case MYPAGE:
-                    tpl = new MypageTpl();
-                    break;
                 case STUDENT:
                     tpl = new StudentTpl();
                     break;
