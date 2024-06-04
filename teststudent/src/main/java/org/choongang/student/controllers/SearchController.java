@@ -9,7 +9,7 @@ import org.choongang.student.services.StudentServiceLocator;
 public class SearchController extends AbstractController {
     @Override
     public void show() {
-
+        System.out.print("조회하려는 학생의 학번을 입력해주세요.");
     }
 
     @Override
