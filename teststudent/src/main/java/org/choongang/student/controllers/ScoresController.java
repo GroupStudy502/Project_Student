@@ -24,8 +24,7 @@ public class ScoresController extends AbstractController {
         String scores = items == null ? "":items.stream().map(s -> String.format("학번:%d, 과목코드: %d, %d학년, %d학기, 성적: %d%n", s.getSNo(), s.getSubCode(), s.getSYear(), s.getSSem(), s.getSScore())).collect(Collectors.joining("\n"));
 
         Templates.getInstance().render(StudentMenu.SCORES, () -> scores);
-        // 과목리스트 출력 후 학생관리 메뉴 이동
-       // MainRouter.getInstance().change(MainMenu.STUDENT);
+
     }
 
     @Override
@@ -36,8 +35,11 @@ public class ScoresController extends AbstractController {
             String studentNo = promptWithValidation("학번: ", s -> !s.isBlank());
             try {
                 long sNo = Long.parseLong(studentNo);
+                System.out.println(sNo);
+                System.out.println("여기");
                 Score score = service.get(sNo);
                 if (score == null) {
+
                     System.err.println("조회된 성적이 없습니다");
                     continue;
                 }
@@ -62,6 +64,7 @@ public class ScoresController extends AbstractController {
                 }
 
             } catch (Exception e) {
+                e.printStackTrace();
                 System.err.println("\n학번은 숫자로 입력하세요.");
             }
 
