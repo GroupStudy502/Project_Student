@@ -9,7 +9,8 @@ import org.choongang.student.constants.StudentMenu;
 public class StudentControllerLocator extends AbstractControllerLocator {
     private static ControllerLocator instance;
 
-    private StudentControllerLocator() {}
+    private StudentControllerLocator() {
+    }
 
     public static ControllerLocator getInstance() {
         if (instance == null) {
@@ -30,10 +31,25 @@ public class StudentControllerLocator extends AbstractControllerLocator {
         // 학생서브 메뉴
         if (menu instanceof StudentMenu) {
             StudentMenu studentMenu = (StudentMenu) menu;
-            switch(studentMenu) {
-                case SUBJECTS: controller = new StudentController.SubjectsController(); break;
-                case STUDENTS: controller = new StudentsController(); break;
-                case SCORES: controller = new ScoresController(); break;
+            switch (studentMenu) {
+                case SUBJECTS:
+                    controller = new SubjectsListController();
+                    break;
+                case STUDENTS:
+                    controller = new StudentsController();
+                    break;
+                case SCORES:
+                    controller = new ScoresController();
+                    break;
+                case SUBINSERT:
+                    controller = new SubjectsInsertController();
+                    break;
+                case SUBUPDATE:
+                    controller = new SubjectsUpdateController();
+                    break;
+                case SUBDELETE:
+                    controller = new SubjectsDeleteController();
+                    break;
             }
         } else { // 학생 메인 메뉴
             controller = new StudentController();
