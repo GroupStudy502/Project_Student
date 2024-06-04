@@ -43,6 +43,8 @@ public class SubjectsListController extends AbstractController {
             case 3:
                 controller = studentlocator.find(StudentMenu.SUBDELETE);
                 break;
+            default:
+                controller = studentlocator.find(MainMenu.STUDENT);
         }
 
         controller.run();
